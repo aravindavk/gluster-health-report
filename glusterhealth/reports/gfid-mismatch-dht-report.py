@@ -38,4 +38,7 @@ def gfid__mismatch_dht(logfile, ctx):
 def report_gfid__mismatch_dht(ctx):
     logfiles = get_mount_log_files()
     for logfile in logfiles:
-        gfid__mismatch_dht(logfile, ctx)
+        if os.path.isfile(logfile):
+            gfid__mismatch_dht(logfile, ctx)
+        else:
+	    ctx.error("gfid mismatch: log file not found to check for mismatch")
