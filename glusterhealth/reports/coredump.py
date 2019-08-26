@@ -18,7 +18,7 @@ def report_coredump(ctx):
     cmd = "ulimit -c"
     try:
         out = command_output(cmd)
-        if out.strip() == "unlimited":
+        if out.strip() == b"unlimited":
             ctx.ok("The maximum size of core files created is set to "
                    "unlimted.")
         else:
