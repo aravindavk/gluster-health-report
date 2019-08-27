@@ -19,7 +19,9 @@ def report_check_firewall_ports(ctx):
     cmd1 = "netstat -npl | grep -n /glusterfsd | grep tcp"
     try:
         out = command_output(cmd)
+        out = out.decode('utf-8', 'replace') if out else None
         out1 = command_output(cmd1)
+        out1 = out1.decode('utf-8', 'replace') if out1 else None
 
         if out:
             ctx.ok("Ports open for glusterd:\n" + out)
